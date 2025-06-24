@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LinkHub - Your central hub for anime, movies, cartoons and more. Organized collection of ouo.io links.">
+    <meta name="keywords" content="linkhub, anime, movies, cartoons, ouo.io, links">
+    <title>LinkHub | Central Resource for Entertainment Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        #search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        #search-input::placeholder {
+            color: #aaa;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4facfe;
+            font-size: 1.2rem;
+        }
+        
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .category {
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 12px;
+            padding: 25px;
+            width: 350px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: #4facfe;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        
+        .link-list {
+            list-style: none;
+        }
+        
+        .link-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+        
+        .link-item:last-child {
+            border-bottom: none;
+        }
+        
+        .link-item a {
+            color: #c5c5c5;
+            text-decoration: underline;
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .link-item a:hover {
+            color: #4facfe;
+            text-decoration: none;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .link-count {
+            display: inline-block;
+            background: rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .category {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LinkHub</h1>
+            <p class="subtitle">Your central hub for organized entertainment links. All content accessible through ouo.io shortened URLs.</p>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for anime, movies, cartoons...">
+            <div class="search-icon"><i class="fas fa-search"></i></div>
+        </div>
+        
+        <div id="no-results" class="no-results">
+            <i class="fas fa-search fa-2x" style="margin-bottom: 15px;"></i>
+            <p>No matching links found. Try a different search term.</p>
+        </div>
+        
+        <div class="category-container" id="category-container">
+            <!-- Categories will be populated by JavaScript -->
+        </div>
+        
+        <div class="footer">
+            <p>LinkHub &copy; 2023 | <span id="total-links">0</span> links available</p>
+        </div>
+    </div>
+    
+    <script>
+        // Sample JSON data structure
+        const linkData = [
+            {
+                category: "Anime",
+                icon: "fa-tv",
+                links: [
+                    { title: "Attack on Titan Final Season", url: "https://ouo.io/nRztRN" },
+                    { title: "One Piece Episode 1020", url: "https://ouo.io/onep1020" },
+                    { title: "Demon Slayer: Entertainment District Arc", url: "https://ouo.io/ds2022" },
+                    { title: "My Hero Academia Season 6", url: "https://ouo.io/mha6" },
+                    { title: "Jujutsu Kaisen Movie", url: "https://ouo.io/jjk0" },
+                    { title: "Spy x Family Part 2", url: "https://ouo.io/sxf2" }
+                ]
+            },
+            {
+                category: "Movies",
+                icon: "fa-film",
+                links: [
+                    { title: "Avatar: The Way of Water", url: "https://ouo.io/avatar2" },
+                    { title: "Top Gun: Maverick", url: "https://ouo.io/topgun2" },
+                    { title: "The Batman (2022)", url: "https://ouo.io/batman22" },
+                    { title: "Black Panther: Wakanda Forever", url: "https://ouo.io/bp2" },
+                    { title: "Everything Everywhere All at Once", url: "https://ouo.io/eeaao" }
+                ]
+            },
+            {
+                category: "Cartoons",
+                icon: "fa-pencil-alt",
+                links: [
+                    { title: "Rick and Morty Season 6", url: "https://ouo.io/rm6" },
+                    { title: "Adventure Time Complete Series", url: "https://ouo.io/atime" },
+                    { title: "Gravity Falls Full HD", url: "https://ouo.io/gfalls" },
+                    { title: "Steven Universe: The Movie", url: "https://ouo.io/sumovie" }
+                ]
+            },
+            {
+                category: "TV Shows",
+                icon: "fa-video",
+                links: [
+                    { title: "Stranger Things Season 4", url: "https://ouo.io/st4" },
+                    { title: "House of the Dragon", url: "https://ouo.io/hotd" },
+                    { title: "The Last of Us", url: "https://ouo.io/tlou" },
+                    { title: "Wednesday (Netflix Series)", url: "https://ouo.io/wed" }
+                ]
+            },
+            {
+                category: "Documentaries",
+                icon: "fa-globe",
+                links: [
+                    { title: "Our Planet II", url: "https://ouo.io/planet2" },
+                    { title: "The Social Dilemma", url: "https://ouo.io/sociald" },
+                    { title: "Seaspiracy", url: "https://ouo.io/seasp" }
+                ]
+            },
+            {
+                category: "Classics",
+                icon: "fa-history",
+                links: [
+                    { title: "The Godfather Trilogy", url: "https://ouo.io/gfather" },
+                    { title: "Back to the Future Series", url: "https://ouo.io/bttf" },
+                    { title: "Indiana Jones Collection", url: "https://ouo.io/indyj" }
+                ]
+            }
+        ];
+
+        // Initialize the site
+        function initSite() {
+            renderCategories(linkData);
+            setupSearch();
+            updateLinkCount();
+        }
+
+        // Render all categories
+        function renderCategories(data) {
+            const container = document.getElementById('category-container');
+            container.innerHTML = '';
+            
+            data.forEach(category => {
+                const categoryEl = document.createElement('div');
+                categoryEl.className = 'category';
+                
+                categoryEl.innerHTML = `
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas ${category.icon}"></i></div>
+                        <h2 class="category-title">${category.category}</h2>
+                    </div>
+                    <ul class="link-list">
+                        ${category.links.map(link => `
+                            <li class="link-item">
+                                <a href="${link.url}" target="_blank">${link.title}</a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                
+                container.appendChild(categoryEl);
+            });
+        }
+
+        // Set up search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            const noResults = document.getElementById('no-results');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    renderCategories(linkData);
+                    noResults.style.display = 'none';
+                    updateLinkCount();
+                    return;
+                }
+                
+                // Filter links based on search term
+                const filteredData = linkData.map(category => {
+                    const filteredLinks = category.links.filter(link => 
+                        link.title.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    return {
+                        ...category,
+                        links: filteredLinks
+                    };
+                }).filter(category => category.links.length > 0);
+                
+                if (filteredData.length > 0) {
+                    renderCategories(filteredData);
+                    noResults.style.display = 'none';
+                } else {
+                    document.getElementById('category-container').innerHTML = '';
+                    noResults.style.display = 'block';
+                }
+                
+                updateLinkCount();
+            });
+        }
+
+        // Update total link count
+        function updateLinkCount() {
+            let totalLinks = 0;
+            linkData.forEach(category => {
+                totalLinks += category.links.length;
+            });
+            document.getElementById('total-links').textContent = totalLinks;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initSite);
+    </script>
+</body>
+</html>
