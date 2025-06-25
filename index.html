@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LinkHub - Your central hub for anime, movies, cartoons and more. Organized collection of ouo.io links.">
-    <meta name="keywords" content="linkhub, anime, movies, cartoons, ouo.io, links">
-    <title>LinkHub | Central Resource for Entertainment Links</title>
+    <meta name="description" content="Anime LinkHub - Your central hub for all anime content. Organized collection of ouo.io links.">
+    <meta name="keywords" content="anime, linkhub, shounen, shoujo, isekai, mecha, slice of life">
+    <title>Anime LinkHub | Central Resource for Anime Content</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -21,6 +21,8 @@
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%2316213e"/><path d="M0 50 Q 25 30, 50 50 T 100 50 L100 100 L0 100 Z" fill="%231a1a2e" opacity="0.2"/></svg>');
+            background-size: 300px 300px;
         }
         
         .container {
@@ -33,23 +35,73 @@
             text-align: center;
             padding: 30px 0;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #00f2fe;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         h1 {
             font-size: 2.8rem;
             margin-bottom: 10px;
-            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(to right, #ff6b6b 0%, #4facfe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .subtitle {
             font-size: 1.2rem;
             color: #a0a0a0;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 15px 0 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 10px;
+            padding: 12px 20px;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4facfe;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaa;
         }
         
         .search-container {
@@ -85,7 +137,7 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: #4facfe;
+            color: #ff6b6b;
             font-size: 1.2rem;
         }
         
@@ -104,11 +156,30 @@
             width: 350px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff6b6b, #4facfe);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .category:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+        
+        .category:hover::before {
+            transform: scaleX(1);
         }
         
         .category-header {
@@ -122,13 +193,27 @@
         .category-icon {
             font-size: 1.8rem;
             margin-right: 15px;
-            color: #4facfe;
+            color: #ff6b6b;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.1);
         }
         
         .category-title {
             font-size: 1.6rem;
             font-weight: 600;
             color: #f0f0f0;
+        }
+        
+        .category-description {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            min-height: 60px;
         }
         
         .link-list {
@@ -138,6 +223,8 @@
         .link-item {
             padding: 12px 0;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
         }
         
         .link-item:last-child {
@@ -146,16 +233,23 @@
         
         .link-item a {
             color: #c5c5c5;
-            text-decoration: underline;
+            text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.2s ease;
             display: block;
             padding: 5px 0;
+            flex-grow: 1;
         }
         
         .link-item a:hover {
             color: #4facfe;
-            text-decoration: none;
+            text-decoration: underline;
+        }
+        
+        .link-icon {
+            color: #4facfe;
+            margin-right: 10px;
+            font-size: 0.9rem;
         }
         
         .footer {
@@ -186,6 +280,29 @@
             display: none;
         }
         
+        .popular-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0 30px;
+        }
+        
+        .tag {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+        }
+        
         @media (max-width: 768px) {
             .category {
                 width: 100%;
@@ -194,24 +311,70 @@
             h1 {
                 font-size: 2.2rem;
             }
+            
+            .stats-container {
+                gap: 10px;
+            }
+            
+            .stat-box {
+                min-width: 120px;
+                padding: 10px 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>LinkHub</h1>
-            <p class="subtitle">Your central hub for organized entertainment links. All content accessible through ouo.io shortened URLs.</p>
+            <div class="logo-container">
+                <i class="fas fa-dragon logo-icon"></i>
+                <h1>Anime LinkHub</h1>
+            </div>
+            <p class="subtitle">Your central hub for all anime content. Organized collection of ouo.io links categorized by genre and type.</p>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-value" id="total-series">327</div>
+                    <div class="stat-label">Anime Series</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="total-movies">42</div>
+                    <div class="stat-label">Anime Movies</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="total-categories">8</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="total-episodes">12k+</div>
+                    <div class="stat-label">Episodes</div>
+                </div>
+            </div>
         </header>
         
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search for anime, movies, cartoons...">
+            <input type="text" id="search-input" placeholder="Search for anime series, movies, genres...">
             <div class="search-icon"><i class="fas fa-search"></i></div>
         </div>
         
+        <div class="popular-tags">
+            <div class="tag" data-tag="shounen">Shounen</div>
+            <div class="tag" data-tag="shoujo">Shoujo</div>
+            <div class="tag" data-tag="isekai">Isekai</div>
+            <div class="tag" data-tag="mecha">Mecha</div>
+            <div class="tag" data-tag="slice">Slice of Life</div>
+            <div class="tag" data-tag="fantasy">Fantasy</div>
+            <div class="tag" data-tag="hentai">Hentai</div>
+            <div class="tag" data-tag="new">New Releases</div>
+        </div>
+        
         <div id="no-results" class="no-results">
-            <i class="fas fa-search fa-2x" style="margin-bottom: 15px;"></i>
-            <p>No matching links found. Try a different search term.</p>
+            <i class="fas fa-search fa-2x" style="margin-bottom: 15px; color: #ff6b6b;"></i>
+            <p>No matching anime found. Try a different search term.</p>
         </div>
         
         <div class="category-container" id="category-container">
@@ -219,80 +382,129 @@
         </div>
         
         <div class="footer">
-            <p>LinkHub &copy; 2023 | <span id="total-links">0</span> links available</p>
+            <p>Anime LinkHub &copy; 2023 | <span id="total-links">0</span> anime links available</p>
         </div>
     </div>
     
     <script>
-        // Sample JSON data structure
-        const linkData = [
+        // Anime category data structure
+        const animeData = [
             {
-                category: "Anime",
-                icon: "fa-tv",
+                category: "Shounen",
+                icon: "fa-fist-raised",
+                description: "Action-packed anime targeted at young male audience",
                 links: [
-                    { title: "Attack on Titan Final Season", url: "https://ouo.io/nRztRN" },
-                    { title: "One Piece Episode 1020", url: "https://ouo.io/onep1020" },
                     { title: "Demon Slayer: Entertainment District Arc", url: "https://ouo.io/ds2022" },
+                    { title: "Jujutsu Kaisen Season 2", url: "https://ouo.io/jjk2" },
                     { title: "My Hero Academia Season 6", url: "https://ouo.io/mha6" },
-                    { title: "Jujutsu Kaisen Movie", url: "https://ouo.io/jjk0" },
-                    { title: "Spy x Family Part 2", url: "https://ouo.io/sxf2" }
+                    { title: "One Piece: Wano Country Arc", url: "https://ouo.io/opwano" },
+                    { title: "Chainsaw Man", url: "https://ouo.io/csm" },
+                    { title: "Black Clover: Spade Kingdom Arc", url: "https://ouo.io/bcspade" }
+                ]
+            },
+            {
+                category: "Shoujo",
+                icon: "fa-heart",
+                description: "Romantic and emotional stories for young female audience",
+                links: [
+                    { title: "Fruits Basket: Final Season", url: "https://ouo.io/fb3" },
+                    { title: "Ouran High School Host Club", url: "https://ouo.io/ouran" },
+                    { title: "Sailor Moon Crystal", url: "https://ouo.io/smcrystal" },
+                    { title: "Cardcaptor Sakura: Clear Card", url: "https://ouo.io/ccsakura" },
+                    { title: "Nana", url: "https://ouo.io/nana" }
+                ]
+            },
+            {
+                category: "Isekai",
+                icon: "fa-door-open",
+                description: "Transported to another world adventures",
+                links: [
+                    { title: "Mushoku Tensei: Jobless Reincarnation", url: "https://ouo.io/mt2" },
+                    { title: "That Time I Got Reincarnated as a Slime", url: "https://ouo.io/slime3" },
+                    { title: "Re:Zero - Starting Life in Another World", url: "https://ouo.io/rezero2" },
+                    { title: "Overlord Season 4", url: "https://ouo.io/overlord4" },
+                    { title: "The Eminence in Shadow", url: "https://ouo.io/eminence" }
+                ]
+            },
+            {
+                category: "Mecha",
+                icon: "fa-robot",
+                description: "Giant robots and futuristic technology",
+                links: [
+                    { title: "Mobile Suit Gundam: The Witch from Mercury", url: "https://ouo.io/gundamwf" },
+                    { title: "Neon Genesis Evangelion", url: "https://ouo.io/evangelion" },
+                    { title: "Code Geass: Lelouch of the Rebellion", url: "https://ouo.io/geass" },
+                    { title: "Darling in the FranXX", url: "https://ouo.io/franxx" },
+                    { title: "86 EIGHTY-SIX Part 2", url: "https://ouo.io/86" }
+                ]
+            },
+            {
+                category: "Slice of Life",
+                icon: "fa-coffee",
+                description: "Everyday stories and character interactions",
+                links: [
+                    { title: "K-On! Complete Series", url: "https://ouo.io/k-on" },
+                    { title: "Clannad: After Story", url: "https://ouo.io/clannadas" },
+                    { title: "March Comes in Like a Lion", url: "https://ouo.io/marchlion" },
+                    { title: "Barakamon", url: "https://ouo.io/barakamon" },
+                    { title: "Hyouka", url: "https://ouo.io/hyouka" }
+                ]
+            },
+            {
+                category: "Fantasy",
+                icon: "fa-hat-wizard",
+                description: "Magical worlds and mythical creatures",
+                links: [
+                    { title: "Sword Art Online: Alicization", url: "https://ouo.io/saoa" },
+                    { title: "Made in Abyss: The Golden City", url: "https://ouo.io/miagold" },
+                    { title: "The Ancient Magus' Bride", url: "https://ouo.io/magus" },
+                    { title: "Berserk (2016)", url: "https://ouo.io/berserk" },
+                    { title: "Claymore", url: "https://ouo.io/claymore" }
                 ]
             },
             {
                 category: "Movies",
                 icon: "fa-film",
+                description: "Feature-length anime films",
                 links: [
-                    { title: "Avatar: The Way of Water", url: "https://ouo.io/avatar2" },
-                    { title: "Top Gun: Maverick", url: "https://ouo.io/topgun2" },
-                    { title: "The Batman (2022)", url: "https://ouo.io/batman22" },
-                    { title: "Black Panther: Wakanda Forever", url: "https://ouo.io/bp2" },
-                    { title: "Everything Everywhere All at Once", url: "https://ouo.io/eeaao" }
+                    { title: "Demon Slayer: Mugen Train", url: "https://ouo.io/dsmugen" },
+                    { title: "Jujutsu Kaisen 0", url: "https://ouo.io/jjk0" },
+                    { title: "Your Name", url: "https://ouo.io/yourname" },
+                    { title: "Spirited Away", url: "https://ouo.io/spirited" },
+                    { title: "A Silent Voice", url: "https://ouo.io/silent" }
                 ]
             },
             {
-                category: "Cartoons",
-                icon: "fa-pencil-alt",
+                category: "Hentai",
+                icon: "fa-film",
+                description: "Feature-length anime films",
                 links: [
-                    { title: "Rick and Morty Season 6", url: "https://ouo.io/rm6" },
-                    { title: "Adventure Time Complete Series", url: "https://ouo.io/atime" },
-                    { title: "Gravity Falls Full HD", url: "https://ouo.io/gfalls" },
-                    { title: "Steven Universe: The Movie", url: "https://ouo.io/sumovie" }
+                    { title: "Demon Slayer: Mugen Train", url: "https://ouo.io/dsmugen" },
+                    { title: "Jujutsu Kaisen 0", url: "https://ouo.io/jjk0" },
+                    { title: "Your Name", url: "https://ouo.io/yourname" },
+                    { title: "Spirited Away", url: "https://ouo.io/spirited" },
+                    { title: "A Silent Voice", url: "https://ouo.io/silent" }
                 ]
             },
             {
-                category: "TV Shows",
-                icon: "fa-video",
+                category: "New Releases",
+                icon: "fa-bolt",
+                description: "Recently aired and upcoming anime",
                 links: [
-                    { title: "Stranger Things Season 4", url: "https://ouo.io/st4" },
-                    { title: "House of the Dragon", url: "https://ouo.io/hotd" },
-                    { title: "The Last of Us", url: "https://ouo.io/tlou" },
-                    { title: "Wednesday (Netflix Series)", url: "https://ouo.io/wed" }
-                ]
-            },
-            {
-                category: "Documentaries",
-                icon: "fa-globe",
-                links: [
-                    { title: "Our Planet II", url: "https://ouo.io/planet2" },
-                    { title: "The Social Dilemma", url: "https://ouo.io/sociald" },
-                    { title: "Seaspiracy", url: "https://ouo.io/seasp" }
-                ]
-            },
-            {
-                category: "Classics",
-                icon: "fa-history",
-                links: [
-                    { title: "The Godfather Trilogy", url: "https://ouo.io/gfather" },
-                    { title: "Back to the Future Series", url: "https://ouo.io/bttf" },
-                    { title: "Indiana Jones Collection", url: "https://ouo.io/indyj" }
+                    { title: "Oshi no Ko", url: "https://ouo.io/oshinoko" },
+                    { title: "Hell's Paradise", url: "https://ouo.io/hellspara" },
+                    { title: "Zom 100: Bucket List of the Dead", url: "https://ouo.io/zom100" },
+                    { title: "Vinland Saga Season 2", url: "https://ouo.io/vinland2" },
+                    { title: "Heavenly Delusion", url: "https://ouo.io/heavendel" }
                 ]
             }
         ];
 
         // Initialize the site
         function initSite() {
-            renderCategories(linkData);
+            renderCategories(animeData);
             setupSearch();
+            setupTags();
             updateLinkCount();
         }
 
@@ -300,6 +512,13 @@
         function renderCategories(data) {
             const container = document.getElementById('category-container');
             container.innerHTML = '';
+            
+            if (data.length === 0) {
+                document.getElementById('no-results').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('no-results').style.display = 'none';
             
             data.forEach(category => {
                 const categoryEl = document.createElement('div');
@@ -310,9 +529,11 @@
                         <div class="category-icon"><i class="fas ${category.icon}"></i></div>
                         <h2 class="category-title">${category.category}</h2>
                     </div>
+                    <p class="category-description">${category.description}</p>
                     <ul class="link-list">
                         ${category.links.map(link => `
                             <li class="link-item">
+                                <i class="fas fa-play-circle link-icon"></i>
                                 <a href="${link.url}" target="_blank">${link.title}</a>
                             </li>
                         `).join('')}
@@ -332,40 +553,74 @@
                 const searchTerm = this.value.toLowerCase().trim();
                 
                 if (searchTerm === '') {
-                    renderCategories(linkData);
-                    noResults.style.display = 'none';
+                    renderCategories(animeData);
                     updateLinkCount();
                     return;
                 }
                 
-                // Filter links based on search term
-                const filteredData = linkData.map(category => {
+                // Filter categories and links based on search term
+                const filteredData = animeData.map(category => {
                     const filteredLinks = category.links.filter(link => 
-                        link.title.toLowerCase().includes(searchTerm)
+                        link.title.toLowerCase().includes(searchTerm) || 
+                        category.category.toLowerCase().includes(searchTerm) ||
+                        category.description.toLowerCase().includes(searchTerm)
                     );
                     
+                    if (filteredLinks.length > 0) {
+                        return {
+                            ...category,
+                            links: filteredLinks
+                        };
+                    }
+                    return null;
+                }).filter(category => category !== null);
+                
+                renderCategories(filteredData);
+                updateLinkCount();
+            });
+        }
+
+        // Set up tag filtering
+        function setupTags() {
+            const tags = document.querySelectorAll('.tag');
+            
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const tagName = this.getAttribute('data-tag');
+                    filterByTag(tagName);
+                });
+            });
+        }
+
+        // Filter by tag
+        function filterByTag(tag) {
+            const searchInput = document.getElementById('search-input');
+            searchInput.value = tag;
+            
+            const filteredData = animeData.map(category => {
+                const filteredLinks = category.links.filter(link => 
+                    link.title.toLowerCase().includes(tag) || 
+                    category.category.toLowerCase().includes(tag) ||
+                    category.description.toLowerCase().includes(tag)
+                );
+                
+                if (filteredLinks.length > 0) {
                     return {
                         ...category,
                         links: filteredLinks
                     };
-                }).filter(category => category.links.length > 0);
-                
-                if (filteredData.length > 0) {
-                    renderCategories(filteredData);
-                    noResults.style.display = 'none';
-                } else {
-                    document.getElementById('category-container').innerHTML = '';
-                    noResults.style.display = 'block';
                 }
-                
-                updateLinkCount();
-            });
+                return null;
+            }).filter(category => category !== null);
+            
+            renderCategories(filteredData);
+            updateLinkCount();
         }
 
         // Update total link count
         function updateLinkCount() {
             let totalLinks = 0;
-            linkData.forEach(category => {
+            animeData.forEach(category => {
                 totalLinks += category.links.length;
             });
             document.getElementById('total-links').textContent = totalLinks;
