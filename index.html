@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="juicyads-site-verification" content="751ed59e4f6ed0be63106ef1fb44c3b4">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Anime LinkHub - Your central hub for all anime content. Organized collection of ouo.io links.">
-    <meta name="keywords" content="anime, linkhub, shounen, shoujo, isekai, mecha, slice of life">
-    <title>FindMyAnime | Central Resource for Anime Content</title>
+    <meta name="description" content="Kdrama LinkHub - Your central hub for Korean dramas. Organized collection of drama links.">
+    <meta name="keywords" content="kdrama, korean drama, romance, thriller, historical, comedy, drama">
+    <title>Kdrama LinkHub | Central Resource for Korean Dramas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -49,7 +48,7 @@
         
         .logo-icon {
             font-size: 2.5rem;
-            color: #00f2fe;
+            color: #ff6b6b;
             animation: pulse 2s infinite;
         }
         
@@ -217,37 +216,83 @@
             min-height: 60px;
         }
         
-        .link-list {
-            list-style: none;
+        .drama-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
-        .link-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        .drama-card {
+            background: rgba(40, 40, 60, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .drama-card:hover {
+            background: rgba(50, 50, 70, 0.7);
+        }
+        
+        .drama-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .drama-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        
+        .drama-cast {
+            font-size: 0.9rem;
+            color: #ff6b6b;
+            font-style: italic;
+        }
+        
+        .drama-description {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        .episode-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid rgba(79, 172, 254, 0.3);
+        }
+        
+        .episode-list.expanded {
+            max-height: 500px;
+        }
+        
+        .episode-item {
+            padding: 8px 0;
             display: flex;
             align-items: center;
         }
         
-        .link-item:last-child {
-            border-bottom: none;
-        }
-        
-        .link-item a {
+        .episode-item a {
             color: #c5c5c5;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: color 0.2s ease;
             display: block;
             padding: 5px 0;
             flex-grow: 1;
         }
         
-        .link-item a:hover {
+        .episode-item a:hover {
             color: #4facfe;
             text-decoration: underline;
         }
         
-        .link-icon {
+        .episode-icon {
             color: #4facfe;
             margin-right: 10px;
             font-size: 0.9rem;
@@ -304,6 +349,17 @@
             transform: translateY(-2px);
         }
         
+        .disclaimer {
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+        }
+        
         @media (max-width: 768px) {
             .category {
                 width: 100%;
@@ -327,72 +383,57 @@
             }
         }
     </style>
-    <script type='text/javascript' src='//pl27008694.profitableratecpm.com/77/a9/67/77a967387383913d2a3ca130b8774afd.js'></script>
 </head>
 <body>
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '038888c22b14a66f7184583059470140',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/038888c22b14a66f7184583059470140/invoke.js"></script>
-    <!-- JuicyAds v3.0 -->
-<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-<ins id="1094671" data-width="300" data-height="50"></ins>
-<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1094671});</script>
-<!--JuicyAds END-->
-
     <div class="container">
         <header>
             <div class="logo-container">
-                <i class="fas fa-dragon logo-icon"></i>
-                <h1>Find My Anime</h1>
+                <i class="fas fa-tv logo-icon"></i>
+                <h1>Kdrama LinkHub</h1>
             </div>
-            <p class="subtitle">Your central hub for all anime content. Organized collection of links categorized by genre and type.</p>
+            <p class="subtitle">Your central hub for Korean dramas. Organized collection of links categorized by genre.</p>
             
             <div class="stats-container">
                 <div class="stat-box">
-                    <div class="stat-value" id="total-series">327</div>
-                    <div class="stat-label">Anime Series</div>
+                    <div class="stat-value" id="total-series">58</div>
+                    <div class="stat-label">Kdrama Series</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value" id="total-movies">42</div>
-                    <div class="stat-label">Anime Movies</div>
+                    <div class="stat-value" id="total-episodes">1,200+</div>
+                    <div class="stat-label">Episodes</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value" id="total-categories">8</div>
+                    <div class="stat-value" id="total-categories">6</div>
                     <div class="stat-label">Categories</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value" id="total-episodes">12k+</div>
-                    <div class="stat-label">Episodes</div>
+                    <div class="stat-value" id="total-actors">250+</div>
+                    <div class="stat-label">Actors</div>
                 </div>
+            </div>
+            
+            <div class="disclaimer">
+                <i class="fas fa-exclamation-circle"></i> Disclaimer: This site does not host or own any Kdrama content. We only provide links to external sources for informational purposes.
             </div>
         </header>
         
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search for anime series, movies, genres...">
+            <input type="text" id="search-input" placeholder="Search for dramas, actors, genres...">
             <div class="search-icon"><i class="fas fa-search"></i></div>
         </div>
         
         <div class="popular-tags">
-            <div class="tag" data-tag="shounen">Shounen</div>
-            <div class="tag" data-tag="shoujo">Shoujo</div>
-            <div class="tag" data-tag="isekai">Isekai</div>
-            <div class="tag" data-tag="mecha">Mecha</div>
-            <div class="tag" data-tag="slice">Slice of Life</div>
+            <div class="tag" data-tag="romance">Romance</div>
+            <div class="tag" data-tag="thriller">Thriller</div>
+            <div class="tag" data-tag="historical">Historical</div>
+            <div class="tag" data-tag="comedy">Comedy</div>
             <div class="tag" data-tag="fantasy">Fantasy</div>
-            <div class="tag" data-tag="hentai">Hentai</div>
             <div class="tag" data-tag="new">New Releases</div>
         </div>
         
         <div id="no-results" class="no-results">
             <i class="fas fa-search fa-2x" style="margin-bottom: 15px; color: #ff6b6b;"></i>
-            <p>No matching anime found. Try a different search term.</p>
+            <p>No matching dramas found. Try a different search term.</p>
         </div>
         
         <div class="category-container" id="category-container">
@@ -400,130 +441,166 @@
         </div>
         
         <div class="footer">
-            <p>Find MY Anime &copy; 2025 | <span id="total-links">0</span> anime links available</p>
+            <p>Kdrama LinkHub &copy; 2025 | <span id="total-links">0</span> drama links available</p>
         </div>
     </div>
     
     <script>
-        // Anime category data structure
-        const animeData = [
+        // Kdrama data structure
+        const kdramaData = [
             {
-                category: "Shounen",
-                icon: "fa-fist-raised",
-                description: "Action-packed anime targeted at young male audience",
-                links: [
-                    { title: "Demon Slayer: Entertainment District Arc", url: "https://ouo.io/ds2022" },
-                    { title: "Jujutsu Kaisen Season 2", url: "https://ouo.io/jjk2" },
-                    { title: "My Hero Academia Season 6", url: "https://ouo.io/mha6" },
-                    { title: "One Piece: Wano Country Arc", url: "https://ouo.io/opwano" },
-                    { title: "Chainsaw Man", url: "https://ouo.io/csm" },
-                    { title: "Black Clover: Spade Kingdom Arc", url: "https://ouo.io/bcspade" }
-                ]
-            },
-            {
-                category: "Shoujo",
+                category: "Romance",
                 icon: "fa-heart",
-                description: "Romantic and emotional stories for young female audience",
-                links: [
-                    { title: "Fruits Basket: Final Season", url: "https://ouo.io/fb3" },
-                    { title: "Ouran High School Host Club", url: "https://ouo.io/ouran" },
-                    { title: "Sailor Moon Crystal", url: "https://ouo.io/smcrystal" },
-                    { title: "Cardcaptor Sakura: Clear Card", url: "https://ouo.io/ccsakura" },
-                    { title: "Nana", url: "https://ouo.io/nana" }
+                description: "Heartwarming love stories with emotional depth",
+                dramas: [
+                    {
+                        title: "Crash Landing on You",
+                        cast: "Hyun Bin, Son Ye-jin",
+                        description: "A paragliding mishap drops a South Korean heiress in North Korea, leading to an unexpected romance.",
+                        episodes: [
+                            { episode: 1, title: "Episode 1", url: "https://ouo.io/cloy1" },
+                            { episode: 2, title: "Episode 2", url: "https://ouo.io/cloy2" },
+                            { episode: 3, title: "Episode 3", url: "https://ouo.io/cloy3" },
+                            { episode: 4, title: "Episode 4", url: "https://ouo.io/cloy4" },
+                            { episode: 5, title: "Episode 5", url: "https://ouo.io/cloy5" },
+                            { episode: 6, title: "Episode 6", url: "https://ouo.io/cloy6" },
+                            { episode: 7, title: "Episode 7", url: "https://ouo.io/cloy7" },
+                            { episode: 8, title: "Episode 8", url: "https://ouo.io/cloy8" },
+                            { episode: 9, title: "Episode 9", url: "https://ouo.io/cloy9" },
+                            { episode: 10, title: "Episode 10", url: "https://ouo.io/cloy10" },
+                            { episode: 11, title: "Episode 11", url: "https://ouo.io/cloy11" },
+                            { episode: 12, title: "Episode 12", url: "https://ouo.io/cloy12" },
+                            { episode: 13, title: "Episode 13", url: "https://ouo.io/cloy13" },
+                            { episode: 14, title: "Episode 14", url: "https://ouo.io/cloy14" },
+                            { episode: 15, title: "Episode 15", url: "https://ouo.io/cloy15" },
+                            { episode: 16, title: "Episode 16", url: "https://ouo.io/cloy16" }
+                        ]
+                    },
+                    {
+                        title: "What's Wrong With Secretary Kim",
+                        cast: "Park Seo-joon, Park Min-young",
+                        description: "A narcissistic executive and his perfect secretary's relationship evolves when she decides to quit.",
+                        episodes: [
+                            { episode: 1, title: "Episode 1", url: "https://ouo.io/wwsk1" },
+                            { episode: 2, title: "Episode 2", url: "https://ouo.io/wwsk2" },
+                            { episode: 3, title: "Episode 3", url: "https://ouo.io/wwsk3" },
+                            { episode: 4, title: "Episode 4", url: "https://ouo.io/wwsk4" },
+                            { episode: 5, title: "Episode 5", url: "https://ouo.io/wwsk5" },
+                            { episode: 6, title: "Episode 6", url: "https://ouo.io/wwsk6" },
+                            { episode: 7, title: "Episode 7", url: "https://ouo.io/wwsk7" },
+                            { episode: 8, title: "Episode 8", url: "https://ouo.io/wwsk8" },
+                            { episode: 9, title: "Episode 9", url: "https://ouo.io/wwsk9" },
+                            { episode: 10, title: "Episode 10", url: "https://ouo.io/wwsk10" },
+                            { episode: 11, title: "Episode 11", url: "https://ouo.io/wwsk11" },
+                            { episode: 12, title: "Episode 12", url: "https://ouo.io/wwsk12" },
+                            { episode: 13, title: "Episode 13", url: "https://ouo.io/wwsk13" },
+                            { episode: 14, title: "Episode 14", url: "https://ouo.io/wwsk14" },
+                            { episode: 15, title: "Episode 15", url: "https://ouo.io/wwsk15" },
+                            { episode: 16, title: "Episode 16", url: "https://ouo.io/wwsk16" }
+                        ]
+                    }
                 ]
             },
             {
-                category: "Isekai",
-                icon: "fa-door-open",
-                description: "Transported to another world adventures",
-                links: [
-                    { title: "Mushoku Tensei: Jobless Reincarnation", url: "https://ouo.io/mt2" },
-                    { title: "That Time I Got Reincarnated as a Slime", url: "https://ouo.io/slime3" },
-                    { title: "Re:Zero - Starting Life in Another World", url: "https://ouo.io/rezero2" },
-                    { title: "Overlord Season 4", url: "https://ouo.io/overlord4" },
-                    { title: "The Eminence in Shadow", url: "https://ouo.io/eminence" }
+                category: "Thriller",
+                icon: "fa-user-secret",
+                description: "Suspenseful dramas with mystery and intrigue",
+                dramas: [
+                    {
+                        title: "Squid Game",
+                        cast: "Lee Jung-jae, Park Hae-soo",
+                        description: "Hundreds of cash-strapped contestants accept an invitation to compete in children's games for a tempting prize.",
+                        episodes: [
+                            { episode: 1, title: "Red Light, Green Light", url: "https://ouo.io/sg1" },
+                            { episode: 2, title: "Hell", url: "https://ouo.io/sg2" },
+                            { episode: 3, title: "The Man with the Umbrella", url: "https://ouo.io/sg3" },
+                            { episode: 4, title: "Stick to the Team", url: "https://ouo.io/sg4" },
+                            { episode: 5, title: "A Fair World", url: "https://ouo.io/sg5" },
+                            { episode: 6, title: "Gganbu", url: "https://ouo.io/sg6" },
+                            { episode: 7, title: "VIPS", url: "https://ouo.io/sg7" },
+                            { episode: 8, title: "Front Man", url: "https://ouo.io/sg8" },
+                            { episode: 9, title: "One Lucky Day", url: "https://ouo.io/sg9" }
+                        ]
+                    }
                 ]
             },
             {
-                category: "Mecha",
-                icon: "fa-robot",
-                description: "Giant robots and futuristic technology",
-                links: [
-                    { title: "Mobile Suit Gundam: The Witch from Mercury", url: "https://ouo.io/gundamwf" },
-                    { title: "Neon Genesis Evangelion", url: "https://ouo.io/evangelion" },
-                    { title: "Code Geass: Lelouch of the Rebellion", url: "https://ouo.io/geass" },
-                    { title: "Darling in the FranXX", url: "https://ouo.io/franxx" },
-                    { title: "86 EIGHTY-SIX Part 2", url: "https://ouo.io/86" }
-                ]
-            },
-            {
-                category: "Slice of Life",
-                icon: "fa-coffee",
-                description: "Everyday stories and character interactions",
-                links: [
-                    { title: "K-On! Complete Series", url: "https://ouo.io/k-on" },
-                    { title: "Clannad: After Story", url: "https://ouo.io/clannadas" },
-                    { title: "March Comes in Like a Lion", url: "https://ouo.io/marchlion" },
-                    { title: "Barakamon", url: "https://ouo.io/barakamon" },
-                    { title: "Hyouka", url: "https://ouo.io/hyouka" }
-                ]
-            },
-            {
-                category: "Fantasy",
-                icon: "fa-hat-wizard",
-                description: "Magical worlds and mythical creatures",
-                links: [
-                    { title: "Sword Art Online: Alicization", url: "https://ouo.io/saoa" },
-                    { title: "Made in Abyss: The Golden City", url: "https://ouo.io/miagold" },
-                    { title: "The Ancient Magus' Bride", url: "https://ouo.io/magus" },
-                    { title: "Berserk (2016)", url: "https://ouo.io/berserk" },
-                    { title: "Claymore", url: "https://ouo.io/claymore" }
-                ]
-            },
-            {
-                category: "Movies",
-                icon: "fa-film",
-                description: "Feature-length anime films",
-                links: [
-                    { title: "Demon Slayer: Mugen Train", url: "https://ouo.io/dsmugen" },
-                    { title: "Jujutsu Kaisen 0", url: "https://ouo.io/jjk0" },
-                    { title: "Your Name", url: "https://ouo.io/yourname" },
-                    { title: "Spirited Away", url: "https://ouo.io/spirited" },
-                    { title: "A Silent Voice", url: "https://ouo.io/silent" }
-                ]
-            },
-            {
-                category: "Hentai",
-                icon: "fa-film",
-                description: "Feature-length anime films",
-                links: [
-                    { title: "Demon Slayer: Mugen Train", url: "https://ouo.io/dsmugen" },
-                    { title: "Jujutsu Kaisen 0", url: "https://ouo.io/jjk0" },
-                    { title: "Your Name", url: "https://ouo.io/yourname" },
-                    { title: "Spirited Away", url: "https://ouo.io/spirited" },
-                    { title: "A Silent Voice", url: "https://ouo.io/silent" }
+                category: "Historical",
+                icon: "fa-landmark",
+                description: "Dramas set in historical periods with rich cultural context",
+                dramas: [
+                    {
+                        title: "Mr. Sunshine",
+                        cast: "Lee Byung-hun, Kim Tae-ri",
+                        description: "A Korean boy who returns to his homeland as an American soldier faces a crisis of national identity.",
+                        episodes: [
+                            { episode: 1, title: "Episode 1", url: "https://ouo.io/ms1" },
+                            { episode: 2, title: "Episode 2", url: "https://ouo.io/ms2" },
+                            { episode: 3, title: "Episode 3", url: "https://ouo.io/ms3" },
+                            { episode: 4, title: "Episode 4", url: "https://ouo.io/ms4" },
+                            { episode: 5, title: "Episode 5", url: "https://ouo.io/ms5" },
+                            { episode: 6, title: "Episode 6", url: "https://ouo.io/ms6" },
+                            { episode: 7, title: "Episode 7", url: "https://ouo.io/ms7" },
+                            { episode: 8, title: "Episode 8", url: "https://ouo.io/ms8" },
+                            { episode: 9, title: "Episode 9", url: "https://ouo.io/ms9" },
+                            { episode: 10, title: "Episode 10", url: "https://ouo.io/ms10" },
+                            { episode: 11, title: "Episode 11", url: "https://ouo.io/ms11" },
+                            { episode: 12, title: "Episode 12", url: "https://ouo.io/ms12" },
+                            { episode: 13, title: "Episode 13", url: "https://ouo.io/ms13" },
+                            { episode: 14, title: "Episode 14", url: "https://ouo.io/ms14" },
+                            { episode: 15, title: "Episode 15", url: "https://ouo.io/ms15" },
+                            { episode: 16, title: "Episode 16", url: "https://ouo.io/ms16" },
+                            { episode: 17, title: "Episode 17", url: "https://ouo.io/ms17" },
+                            { episode: 18, title: "Episode 18", url: "https://ouo.io/ms18" },
+                            { episode: 19, title: "Episode 19", url: "https://ouo.io/ms19" },
+                            { episode: 20, title: "Episode 20", url: "https://ouo.io/ms20" },
+                            { episode: 21, title: "Episode 21", url: "https://ouo.io/ms21" },
+                            { episode: 22, title: "Episode 22", url: "https://ouo.io/ms22" },
+                            { episode: 23, title: "Episode 23", url: "https://ouo.io/ms23" },
+                            { episode: 24, title: "Episode 24", url: "https://ouo.io/ms24" }
+                        ]
+                    }
                 ]
             },
             {
                 category: "New Releases",
                 icon: "fa-bolt",
-                description: "Recently aired and upcoming anime",
-                links: [
-                    { title: "Oshi no Ko", url: "https://ouo.io/oshinoko" },
-                    { title: "Hell's Paradise", url: "https://ouo.io/hellspara" },
-                    { title: "Zom 100: Bucket List of the Dead", url: "https://ouo.io/zom100" },
-                    { title: "Vinland Saga Season 2", url: "https://ouo.io/vinland2" },
-                    { title: "Heavenly Delusion", url: "https://ouo.io/heavendel" }
+                description: "Recently aired and upcoming Korean dramas",
+                dramas: [
+                    {
+                        title: "Queen of Tears",
+                        cast: "Kim Soo-hyun, Kim Ji-won",
+                        description: "The miraculous, thrilling love story of a married couple overcoming a crisis.",
+                        episodes: [
+                            { episode: 1, title: "Episode 1", url: "https://ouo.io/qot1" },
+                            { episode: 2, title: "Episode 2", url: "https://ouo.io/qot2" },
+                            { episode: 3, title: "Episode 3", url: "https://ouo.io/qot3" },
+                            { episode: 4, title: "Episode 4", url: "https://ouo.io/qot4" },
+                            { episode: 5, title: "Episode 5", url: "https://ouo.io/qot5" },
+                            { episode: 6, title: "Episode 6", url: "https://ouo.io/qot6" },
+                            { episode: 7, title: "Episode 7", url: "https://ouo.io/qot7" },
+                            { episode: 8, title: "Episode 8", url: "https://ouo.io/qot8" },
+                            { episode: 9, title: "Episode 9", url: "https://ouo.io/qot9" },
+                            { episode: 10, title: "Episode 10", url: "https://ouo.io/qot10" },
+                            { episode: 11, title: "Episode 11", url: "https://ouo.io/qot11" },
+                            { episode: 12, title: "Episode 12", url: "https://ouo.io/qot12" },
+                            { episode: 13, title: "Episode 13", url: "https://ouo.io/qot13" },
+                            { episode: 14, title: "Episode 14", url: "https://ouo.io/qot14" },
+                            { episode: 15, title: "Episode 15", url: "https://ouo.io/qot15" },
+                            { episode: 16, title: "Episode 16", url: "https://ouo.io/qot16" }
+                        ]
+                    }
                 ]
             }
         ];
 
         // Initialize the site
         function initSite() {
-            renderCategories(animeData);
+            renderCategories(kdramaData);
             setupSearch();
             setupTags();
             updateLinkCount();
+            setupDramaCards();
         }
 
         // Render all categories
@@ -548,17 +625,45 @@
                         <h2 class="category-title">${category.category}</h2>
                     </div>
                     <p class="category-description">${category.description}</p>
-                    <ul class="link-list">
-                        ${category.links.map(link => `
-                            <li class="link-item">
-                                <i class="fas fa-play-circle link-icon"></i>
-                                <a href="${link.url}" target="_blank">${link.title}</a>
-                            </li>
+                    <div class="drama-list">
+                        ${category.dramas.map(drama => `
+                            <div class="drama-card" data-drama="${drama.title.replace(/\s+/g, '-').toLowerCase()}">
+                                <div class="drama-header">
+                                    <h3 class="drama-title">${drama.title}</h3>
+                                    <div class="drama-cast">${drama.cast}</div>
+                                </div>
+                                <p class="drama-description">${drama.description}</p>
+                                <div class="episode-list">
+                                    <ul>
+                                        ${drama.episodes.map(ep => `
+                                            <li class="episode-item">
+                                                <i class="fas fa-play-circle episode-icon"></i>
+                                                <a href="${ep.url}" target="_blank">${ep.title}</a>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            </div>
                         `).join('')}
-                    </ul>
+                    </div>
                 `;
                 
                 container.appendChild(categoryEl);
+            });
+        }
+
+        // Set up drama card click events
+        function setupDramaCards() {
+            const dramaCards = document.querySelectorAll('.drama-card');
+            
+            dramaCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Check if click was on a link
+                    if (e.target.tagName === 'A') return;
+                    
+                    const episodeList = this.querySelector('.episode-list');
+                    episodeList.classList.toggle('expanded');
+                });
             });
         }
 
@@ -571,29 +676,32 @@
                 const searchTerm = this.value.toLowerCase().trim();
                 
                 if (searchTerm === '') {
-                    renderCategories(animeData);
+                    renderCategories(kdramaData);
+                    setupDramaCards();
                     updateLinkCount();
                     return;
                 }
                 
-                // Filter categories and links based on search term
-                const filteredData = animeData.map(category => {
-                    const filteredLinks = category.links.filter(link => 
-                        link.title.toLowerCase().includes(searchTerm) || 
-                        category.category.toLowerCase().includes(searchTerm) ||
-                        category.description.toLowerCase().includes(searchTerm)
+                // Filter categories and dramas based on search term
+                const filteredData = kdramaData.map(category => {
+                    const filteredDramas = category.dramas.filter(drama => 
+                        drama.title.toLowerCase().includes(searchTerm) || 
+                        drama.cast.toLowerCase().includes(searchTerm) ||
+                        drama.description.toLowerCase().includes(searchTerm) ||
+                        category.category.toLowerCase().includes(searchTerm)
                     );
                     
-                    if (filteredLinks.length > 0) {
+                    if (filteredDramas.length > 0) {
                         return {
                             ...category,
-                            links: filteredLinks
+                            dramas: filteredDramas
                         };
                     }
                     return null;
                 }).filter(category => category !== null);
                 
                 renderCategories(filteredData);
+                setupDramaCards();
                 updateLinkCount();
             });
         }
@@ -615,31 +723,35 @@
             const searchInput = document.getElementById('search-input');
             searchInput.value = tag;
             
-            const filteredData = animeData.map(category => {
-                const filteredLinks = category.links.filter(link => 
-                    link.title.toLowerCase().includes(tag) || 
-                    category.category.toLowerCase().includes(tag) ||
-                    category.description.toLowerCase().includes(tag)
+            const filteredData = kdramaData.map(category => {
+                const filteredDramas = category.dramas.filter(drama => 
+                    drama.title.toLowerCase().includes(tag) || 
+                    drama.cast.toLowerCase().includes(tag) ||
+                    drama.description.toLowerCase().includes(tag) ||
+                    category.category.toLowerCase().includes(tag)
                 );
                 
-                if (filteredLinks.length > 0) {
+                if (filteredDramas.length > 0) {
                     return {
                         ...category,
-                        links: filteredLinks
+                        dramas: filteredDramas
                     };
                 }
                 return null;
             }).filter(category => category !== null);
             
             renderCategories(filteredData);
+            setupDramaCards();
             updateLinkCount();
         }
 
         // Update total link count
         function updateLinkCount() {
             let totalLinks = 0;
-            animeData.forEach(category => {
-                totalLinks += category.links.length;
+            kdramaData.forEach(category => {
+                category.dramas.forEach(drama => {
+                    totalLinks += drama.episodes.length;
+                });
             });
             document.getElementById('total-links').textContent = totalLinks;
         }
@@ -647,10 +759,5 @@
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', initSite);
     </script>
-   <!-- JuicyAds v3.0 -->
-<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-<ins id="1094670" data-width="300" data-height="250"></ins>
-<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1094670});</script>
-<!--JuicyAds END-->
 </body>
 </html>
