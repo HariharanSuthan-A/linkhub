@@ -3,534 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kdrama LinkHub - Your central hub for Korean dramas. Organized collection of drama links.">
-    <meta name="keywords" content="kdrama, korean drama, romance, thriller, historical, comedy, drama">
-    <title>Findmydrama | Central Resource for Korean Dramas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Link Directory</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+        /* CSS Styles */
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #e6e6e6;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
             line-height: 1.6;
-            min-height: 100vh;
+            margin: 0;
             padding: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%2316213e"/><path d="M0 50 Q 25 30, 50 50 T 100 50 L100 100 L0 100 Z" fill="%231a1a2e" opacity="0.2"/></svg>');
-            background-size: 300px 300px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            color: #ff6b6b;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
         
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ff6b6b 0%, #4facfe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 15px 0 25px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-box {
-            background: rgba(30, 30, 46, 0.7);
-            border-radius: 10px;
-            padding: 12px 20px;
-            min-width: 140px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #4facfe;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #aaa;
+            margin-bottom: 30px;
         }
         
         .search-container {
-            max-width: 600px;
-            margin: 30px auto;
-            position: relative;
-        }
-        
-        #search-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: none;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #search-input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        #search-input::placeholder {
-            color: #aaa;
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff6b6b;
-            font-size: 1.2rem;
-        }
-        
-        .drama-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .drama-card {
-            background: rgba(30, 30, 46, 0.7);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .drama-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, #ff6b6b, #4facfe);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        
-        .drama-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-        }
-        
-        .drama-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .drama-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .drama-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #f0f0f0;
-            margin-bottom: 8px;
-        }
-        
-        .drama-cast {
-            font-size: 1rem;
-            color: #ff6b6b;
-            font-style: italic;
-        }
-        
-        .drama-description {
-            color: #aaa;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        
-        .watch-link {
-            display: block;
-            background: linear-gradient(135deg, #ff6b6b 0%, #4facfe 100%);
-            color: white;
+            margin-bottom: 30px;
             text-align: center;
-            padding: 12px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            margin-top: auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .watch-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        #search {
+            padding: 10px 15px;
+            width: 60%;
+            max-width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
         }
         
-        .watch-link i {
-            margin-right: 8px;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 50px;
+        .category {
+            margin-bottom: 40px;
+            background-color: #f9f9f9;
             padding: 20px;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .link-count {
-            display: inline-block;
-            background: rgba(79, 172, 254, 0.2);
-            color: #4facfe;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-left: 10px;
-            vertical-align: middle;
+        .category h2 {
+            border-bottom: 2px solid #0077cc;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .link-item {
+            margin-bottom: 10px;
+        }
+        
+        .link-item a {
+            color: #0077cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .link-item a:hover {
+            color: #005599;
+            text-decoration: underline;
+        }
+        
+        .link-description {
+            font-size: 14px;
+            color: #555;
+            margin-top: 2px;
         }
         
         .no-results {
             text-align: center;
-            padding: 40px;
+            padding: 20px;
+            font-style: italic;
             color: #777;
-            font-size: 1.2rem;
             display: none;
-            grid-column: 1 / -1;
         }
         
-        .popular-tags {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0 30px;
-        }
-        
-        .tag {
-            background: rgba(255, 107, 107, 0.1);
-            color: #ff6b6b;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .tag:hover {
-            background: rgba(255, 107, 107, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        .disclaimer {
-            background: rgba(255, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 30px auto;
-            max-width: 800px;
-            text-align: center;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 0, 0, 0.2);
-        }
-        
-        @media (max-width: 768px) {
-            .drama-container {
+        @media (max-width: 600px) {
+            .links {
                 grid-template-columns: 1fr;
             }
             
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .stats-container {
-                gap: 10px;
-            }
-            
-            .stat-box {
-                min-width: 120px;
-                padding: 10px 15px;
-            }
-            
-            .stat-value {
-                font-size: 1.5rem;
+            #search {
+                width: 80%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo-container">
-                <i class="fas fa-tv logo-icon"></i>
-                <h1>Kdrama LinkHub</h1>
-            </div>
-            <p class="subtitle">Your central hub for Korean dramas. Organized collection of links for your favorite shows.</p>
-            
-
-            
-            <div class="disclaimer">
-                <i class="fas fa-exclamation-circle"></i> Disclaimer: This site does not host or own any Kdrama content. We only provide links to external sources for informational purposes.
-            </div>
-        </header>
+        <h1>Link Directory</h1>
         
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search for dramas, actors, genres...">
-            <div class="search-icon"><i class="fas fa-search"></i></div>
-        </div>
-        
-        <div class="popular-tags">
-            <div class="tag" data-tag="romance">Romance</div>
-            <div class="tag" data-tag="thriller">Thriller</div>
-            <div class="tag" data-tag="historical">Historical</div>
-            <div class="tag" data-tag="comedy">Comedy</div>
-            <div class="tag" data-tag="fantasy">Fantasy</div>
-            <div class="tag" data-tag="new">New Releases</div>
-        </div>
-        
-        <div class="drama-container" id="drama-container">
-            <!-- Drama cards will be populated by JavaScript -->
+            <input type="text" id="search" placeholder="Search links...">
         </div>
         
         <div id="no-results" class="no-results">
-            <i class="fas fa-search fa-2x" style="margin-bottom: 15px; color: #ff6b6b;"></i>
-            <p>No matching dramas found. Try a different search term.</p>
+            No links match your search.
         </div>
         
-        <div class="footer">
-            <p>Kdrama LinkHub &copy; 2025 | <span id="total-links-count">0</span> drama links available</p>
+        <div id="categories">
+            <!-- Categories will be populated by JavaScript -->
         </div>
     </div>
-    
+
     <script>
-        // Kdrama data structure
-        const kdramaData = [
+        // Link data - you can modify this to add your own links
+        const linkData = [
             {
-                title: "Second Shot at Love (2025)",
-                cast: "Gong Myung, Choi Soo‑young",
-                description: "A heartfelt romantic drama about two former lovers who reunite unexpectedly years after a painful breakup. As they navigate their past wounds and present lives, they discover that timing might finally be on their side. It's a tender story of forgiveness, growth, and the courage to love again.",
-                url: "https://shrinkme.ink/DwoA"
-            },
-             {
-                title: "When Life Gives You Tangerines (2025)",
-                cast: "Park Bo-gum,IU",
-                description: "Ae Soon who is rebellious but gets nervous every time she rebels. She isn’t well off but is always shining and full of positivity. She dreams of becoming a poet although she is unable to attend school, and she is a bold character who doesn’t hide any emotions.",
-                url: "https://shrinkme.ink/when-life-gives-you-tangerines"
+                category: "Search Engines",
+                links: [
+                    { name: "Google", url: "https://www.google.com", description: "The most popular search engine" },
+                    { name: "DuckDuckGo", url: "https://duckduckgo.com", description: "Privacy-focused search engine" },
+                    { name: "Bing", url: "https://www.bing.com", description: "Microsoft's search engine" }
+                ]
             },
             {
-                title: "What's Wrong With Secretary Kim",
-                cast: "Park Seo-joon, Park Min-young",
-                description: "A narcissistic executive and his perfect secretary's relationship evolves when she decides to quit after nine years of dedicated service. As he tries to understand her reasons, they both confront buried feelings and workplace dynamics in this charming romantic comedy.",
-                url: "https://shrinkme.ink/Second_shot_at_love"
+                category: "Social Media",
+                links: [
+                    { name: "Facebook", url: "https://www.facebook.com", description: "Connect with friends and family" },
+                    { name: "Twitter", url: "https://twitter.com", description: "Microblogging platform" },
+                    { name: "LinkedIn", url: "https://www.linkedin.com", description: "Professional networking" },
+                    { name: "Instagram", url: "https://www.instagram.com", description: "Photo and video sharing" }
+                ]
             },
             {
-                title: "Squid Game",
-                cast: "Lee Jung-jae, Park Hae-soo",
-                description: "Hundreds of cash-strapped contestants accept an invitation to compete in children's games for a tempting prize. The stakes are deadly in this intense thriller that explores human desperation and morality.",
-                url: "https://shrinkme.ink/squid_game_season_1"
+                category: "News",
+                links: [
+                    { name: "BBC News", url: "https://www.bbc.com/news", description: "British news service" },
+                    { name: "CNN", url: "https://www.cnn.com", description: "American news network" },
+                    { name: "Reuters", url: "https://www.reuters.com", description: "International news agency" }
+                ]
             },
             {
-                title: "Squid Game Season 2",
-                cast: "Lee Jung-jae, Park Hae-soo",
-                description: "Hundreds of cash-strapped contestants accept an invitation to compete in children's games for a tempting prize. The stakes are deadly in this intense thriller that explores human desperation and morality.",
-                url: "https://shrinkme.ink/squid_game_season_2"
-            },
-             {
-                title: "Crushology 101",
-                cast: "Roh Jeong-Eui",
-                description: "Bunny, a top sculpture student at Yein University, once believed personality mattered more than looks—until a failed relationship left her embarrassed and insecure.",
-                url: "https://shrinkme.ink/crushology-101-2025"
-            },
-            {
-                title: "Mr.Queen",
-                cast: "Shin Hye-sun",
-                description: "In the present day, Jang Bong Hwan works as a chef at the President's Blue House. He has a free spirit, but his spirit somehow finds its way into the body of Queen Kim So Yong in the Joseon period.King Cheol Jong has secrets. He seems like a figurehead, who is gentle and easygoing.",
-                url: "https://shrinkme.ink/mr_queen_2020"
-            },
-            {
-                title: "Crash Landing on You",
-                cast: "Hyun Bin, Son Ye-jin",
-                description: "A South Korean heiress accidentally paraglides into North Korea and meets an army officer who decides to help her hide. A forbidden romance blossoms in this cross-border love story.",
-                url: "https://shrinkme.ink/Crash_landing_on_you"
-            },
-            {
-                title: "Goblin",
-                cast: "Gong Yoo, Kim Go-eun",
-                description: "A modern-day goblin seeks to end his immortal life and needs a human bride to do so. This fantasy romance weaves together past lives and present connections in a magical tale.",
-                url: "https://shrinkme.ink/Goblin_2016"
-            },
-            {
-                title: "Vincenzo",
-                cast: "Song Joong-ki, Jeon Yeo-been",
-                description: "A Korean-Italian mafia lawyer returns to Korea and uses villainous methods to take down villains. A dark comedy with thrilling action sequences and unexpected alliances.",
-                url: "https://shrinkme.ink/Vincenz0_2021"
+                category: "Programming",
+                links: [
+                    { name: "GitHub", url: "https://github.com", description: "Code hosting platform" },
+                    { name: "Stack Overflow", url: "https://stackoverflow.com", description: "Q&A for programmers" },
+                    { name: "MDN Web Docs", url: "https://developer.mozilla.org", description: "Web development resources" },
+                    { name: "CodePen", url: "https://codepen.io", description: "Front-end code playground" }
+                ]
             }
         ];
 
-        // Initialize the site
-        function initSite() {
-            renderDramas(kdramaData);
-            setupSearch();
-            setupTags();
-            updateLinkCount();
-        }
-
-        // Render all dramas
-        function renderDramas(data) {
-            const container = document.getElementById('drama-container');
-            container.innerHTML = '';
+        // Function to render all categories and links
+        function renderLinks(data) {
+            const categoriesContainer = document.getElementById('categories');
+            categoriesContainer.innerHTML = '';
             
-            if (data.length === 0) {
-                document.getElementById('no-results').style.display = 'block';
-                return;
-            }
+            let hasResults = false;
             
-            document.getElementById('no-results').style.display = 'none';
-            
-            data.forEach(drama => {
-                const dramaCard = document.createElement('div');
-                dramaCard.className = 'drama-card';
-                
-                dramaCard.innerHTML = `
-                    <div class="drama-header">
-                        <h2 class="drama-title">${drama.title}</h2>
-                        <div class="drama-cast">${drama.cast}</div>
-                    </div>
-                    <p class="drama-description">${drama.description}</p>
-                    <a href="${drama.url}" class="watch-link" target="_blank">
-                        <i class="fas fa-play-circle"></i> Watch Drama
-                    </a>
-                `;
-                
-                container.appendChild(dramaCard);
-            });
-        }
-
-        // Set up search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('search-input');
-            const noResults = document.getElementById('no-results');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                
-                if (searchTerm === '') {
-                    renderDramas(kdramaData);
-                    updateLinkCount();
-                    return;
+            data.forEach(category => {
+                if (category.links.length > 0) {
+                    hasResults = true;
+                    
+                    const categoryElement = document.createElement('div');
+                    categoryElement.className = 'category';
+                    
+                    const categoryTitle = document.createElement('h2');
+                    categoryTitle.textContent = category.category;
+                    
+                    const linksContainer = document.createElement('div');
+                    linksContainer.className = 'links';
+                    
+                    category.links.forEach(link => {
+                        const linkItem = document.createElement('div');
+                        linkItem.className = 'link-item';
+                        
+                        const linkAnchor = document.createElement('a');
+                        linkAnchor.href = link.url;
+                        linkAnchor.textContent = link.name;
+                        linkAnchor.target = '_blank';
+                        
+                        const linkDesc = document.createElement('div');
+                        linkDesc.className = 'link-description';
+                        linkDesc.textContent = link.description;
+                        
+                        linkItem.appendChild(linkAnchor);
+                        linkItem.appendChild(linkDesc);
+                        linksContainer.appendChild(linkItem);
+                    });
+                    
+                    categoryElement.appendChild(categoryTitle);
+                    categoryElement.appendChild(linksContainer);
+                    categoriesContainer.appendChild(categoryElement);
                 }
-                
-                // Filter dramas based on search term
-                const filteredData = kdramaData.filter(drama => 
-                    drama.title.toLowerCase().includes(searchTerm) || 
-                    drama.cast.toLowerCase().includes(searchTerm) ||
-                    drama.description.toLowerCase().includes(searchTerm)
-                );
-                
-                renderDramas(filteredData);
-                updateLinkCount();
             });
+            
+            document.getElementById('no-results').style.display = hasResults ? 'none' : 'block';
         }
 
-        // Set up tag filtering
-        function setupTags() {
-            const tags = document.querySelectorAll('.tag');
-            
-            tags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    const tagName = this.getAttribute('data-tag');
-                    filterByTag(tagName);
+        // Function to filter links based on search query
+        function filterLinks(query) {
+            const filteredData = linkData.map(category => {
+                const filteredLinks = category.links.filter(link => {
+                    const searchText = `${link.name} ${link.description} ${link.url} ${category.category}`.toLowerCase();
+                    return searchText.includes(query.toLowerCase());
                 });
+                return { ...category, links: filteredLinks };
             });
-        }
-
-        // Filter by tag
-        function filterByTag(tag) {
-            const searchInput = document.getElementById('search-input');
-            searchInput.value = tag;
             
-            const filteredData = kdramaData.filter(drama => 
-                drama.title.toLowerCase().includes(tag) || 
-                drama.cast.toLowerCase().includes(tag) ||
-                drama.description.toLowerCase().includes(tag)
-            );
+            renderLinks(filteredData);
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLinks(linkData);
             
-            renderDramas(filteredData);
-            updateLinkCount();
-        }
-
-        // Update total link count
-        function updateLinkCount() {
-            const dramaCards = document.querySelectorAll('.drama-card');
-            document.getElementById('total-links-count').textContent = dramaCards.length;
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initSite);
+            // Search functionality
+            const searchInput = document.getElementById('search');
+            searchInput.addEventListener('input', (e) => {
+                filterLinks(e.target.value.trim());
+            });
+        });
     </script>
 </body>
 </html>
